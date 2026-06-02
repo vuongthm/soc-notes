@@ -1,0 +1,112 @@
+site_name: "SOC / Blue Team Notes"
+site_url: "https://vuongthm.github.io/soc-notes/"
+site_description: "Ghi chép về SOC analysis, SIEM, alert triage và incident response — by Vương THM"
+site_author: "Trần Hoàng Vương"
+repo_url: "https://github.com/vuongthm/soc-notes"
+repo_name: "vuongthm/soc-notes"
+edit_uri: "edit/main/docs/"
+
+copyright: "© 2025 Trần Hoàng Vương"
+
+theme:
+  name: material
+  language: vi
+  logo: assets/logo.svg
+  favicon: assets/logo.svg
+  font:
+    text: DM Sans
+    code: JetBrains Mono
+  palette:
+    # Light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-night
+        name: "Chuyển sang dark mode"
+    # Dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-sunny
+        name: "Chuyển sang light mode"
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - navigation.path
+    - navigation.top
+    - navigation.instant
+    - navigation.instant.progress
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+    - toc.follow
+    - header.autohide
+
+extra_css:
+  - assets/custom.css
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: "https://github.com/vuongthm"
+      name: "GitHub"
+  homepage: "https://vuongthm.github.io"
+  analytics:
+    provider: google
+    property: G-XXXXXXXXXX  # Thay bằng GA4 ID của bạn nếu có
+
+plugins:
+  - search:
+      lang:
+        - vi
+        - en
+  - tags
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - attr_list
+  - md_in_html
+  - tables
+  - footnotes
+  - toc:
+      permalink: true
+      title: "Mục lục"
+
+nav:
+  - Trang chủ: index.md
+  - Phân tích (Analysis):
+    - analysis/index.md
+    - "Quy trình triage alert": analysis/alert-triage.md
+    - "Phân tích log": analysis/log-analysis.md
+  - Công cụ (Tools):
+    - tools/index.md
+    - "Splunk cơ bản": tools/splunk-basics.md
+    - "Elastic Stack": tools/elastic-stack.md
+  - Playbooks:
+    - playbooks/index.md
+    - "Phishing response": playbooks/phishing.md
+    - "Malware containment": playbooks/malware.md
