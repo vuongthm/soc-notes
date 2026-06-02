@@ -4,40 +4,25 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:  # Cho phép chạy thủ công
+  workflow_dispatch:
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Cần cho git-revision-date plugin
+          fetch-depth: 0
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-          cache: 'pip'
 
-      - name: Install dependencies
-        run: |
-          pip install \
-            mkdocs-material \
-            mkdocs-material[imaging] \
-            mkdocs-tags-plugin \
-            pymdown-extensions \
-            pillow \
-            cairosvg
+      - name: Install MkDocs Material
+        run: pip install mkdocs-material pymdown-extensions
 
-      - name: Build and deploy
-        run: mkdocs gh-deploy --force --clean --verbose
-
-      - name: Deployment info
-        run: echo "✅ Deployed to https://vuongthm.github.io/soc-notes/"
+      - name: Deploy
+        run: mkdocs gh-deploy --force --clean
